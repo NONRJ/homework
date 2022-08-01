@@ -1,0 +1,44 @@
+body {
+    text-align: center;
+    padding: 5px;
+    background-color: #031422;
+}
+
+ul {
+    padding: 0;
+    
+}
+li {
+    color: rgb(204, 204, 204);
+    list-style-type: none;
+    padding: 5px;
+    font-size: 20px;
+}
+
+input {
+    border: 3px solid #8ec6f3;
+    border-radius: 20px;
+    box-shadow: 0 1px 5px #ff2929;
+    background-color: #528ebe;
+    align-items: center;
+    margin: 5px auto;    
+    width: 30%;
+    justify-content: center;
+    display: flex;
+    cursor:pointer;
+    transition: 0.3s;
+}
+
+input:hover {
+    transform: scale(1.05);
+    box-shadow: none;
+    border: 3px solid #528ebe;
+}
+
+
+form {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column
+}

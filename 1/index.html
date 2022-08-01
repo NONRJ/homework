@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>1</title>
+</head>
+<body>
+
+    <ul id="myUL"><li>1 элемент</li><li>2 элемент</li><li>3 элемент</li></ul>
+
+    <form>
+        <input type="button" value="Выбрать первый элемент" onclick="choiceFirst()"/>
+        <input type="button" value="Выбрать последний элемент" onclick="choiceLast()"/>
+        <input type="button" value="Выбрать следующий элемент" onclick="getNext()"/>
+        <input type="button" value="Выбрать предыдущий элемент"  onclick="getPrev()"/>
+        <input type="button" value="Добавить в начало" onclick="appendFirst()"/>
+        <input type="button" value="Добавить в конец" onclick="appendLast()"/> 
+        <input type="button" value="Удаление последнего елемента" onclick="delLast()"/>    
+        <input type="button" value="Сброс" onclick="restore()"/>
+    </form>
+
+
+<script type="text/javascript">
+
+    function choiceFirst() {
+        var firstEl =  document.getElementById("myUL")
+        firstEl.firstChild.style.color = "#800000"  
+        firstEl.firstChild.nextSibling.style.color = "#ccc"     
+    }
+
+    function choiceLast() {
+        var lastEl =  document.getElementById("myUL")
+        lastEl.lastChild.style.color = "#D2691E" 
+        lastEl.lastChild.previousSibling.style.color = "#ccc"
+    }
+   
+    function getNext() {
+        
+        var mainList = document.getElementById("myUL")
+        var active, prev
+
+        for (var i = 0; i < mainList.children.length; i++) {
+            
+            if (mainList.children[i].hasAttribute("style")) {
+                active = mainList.children[i]
+                if (active.nextSibling == null) {
+                    mainList.firstChild.style.color = "#2E8B57"
+                    mainList.lastChild.removeAttribute("style")
+                } 
+                next = active.nextSibling
+				next.style.color = "#2E8B57"
+				next.previousSibling.removeAttribute("style")
+				break
+            } 
+        }
+    }
+
+    function getPrev() {
+
+        var mainList = document.getElementById("myUL")
+        var active, prev
+
+        for (var i = 0; i < mainList.children.length; i++) {
+            
+            if (mainList.children[i].hasAttribute("style")) {
+                active = mainList.children[i]
+                if (active.previousSibling === null ) {
+                    mainList.lastChild.style.color = "#2E8B57"
+                    mainList.firstChild.removeAttribute("style")
+                }
+                prev = active.previousElementSibling
+                
+                
+				prev.nextSibling.removeAttribute("style")
+                prev.style.color = "#2E8B57"
+                
+				break
+            }
+        } 
+    }
+
+    function appendLast() {
+        var newItem = document.createElement("li");
+        newItem.innerHTML = "NEW LAST";
+        var addAtr = document.getElementById("myUL").appendChild(newItem)
+    }
+
+    function appendFirst() {
+        var newItem = document.createElement("li")
+        newItem.innerHTML = "NEW FIRST"
+        var addAtr = document.getElementById("myUL").insertBefore(newItem, document.getElementById("myUL").firstChild)
+    }
+
+    function restore() {
+        var mainObj = document.getElementById("myUL")
+        while (mainObj.childNodes.length >= 0) {
+            var oneChild = mainObj.firstChild
+            mainObj.removeChild(oneChild)
+        }
+    }
+
+    function delLast() {
+        var delEl = document.getElementById("myUL");       
+        var oneChild = delEl.lastChild
+        delEl.removeChild(oneChild)    
+    }
+
+</script>
+</body>
+</html>
