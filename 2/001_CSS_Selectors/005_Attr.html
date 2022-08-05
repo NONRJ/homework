@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Attr</title>
+    <style>
+        /* a[target] {
+            background-color: yellow;
+        } */
+        /* a[target='_blank'] { 
+            background-color: red;
+        } */
+        
+    </style>
+</head>
+<body>
+    <a href="#">w3schools.com</a>
+    <a href="http://www.google.com" target="_blank">google.com</a>
+    <a href="http://www.wikipedia.org" target="_self">wikipedia.org</a>
+    <a href="#">Someting</a>
+
+    <script type="text/javascript">
+        
+        var a = document.getElementsByTagName("a");
+        document.body.style.cssText = "margin-top: 10px; background: red";
+
+        for (var index = 0; index < a.length; index++) {
+            
+            if (a[index].getAttribute("target")) {
+                a[index].style.backgroundColor = "yellow";
+            }
+            if (a[index].getAttribute("target") == "_blank") {
+                a[index].style.backgroundColor = "green";
+            }
+            
+        }
+        
+        
+    </script>
+</body>
+
+</html>

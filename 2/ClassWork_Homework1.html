@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Classwork</title>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+    <div id="one" >one</div>
+
+
+    <script>
+        document.body.firstElementChild.setAttribute("onclick", "addTwo()")
+
+        function addTwo() {
+            var divOne = document.getElementsByTagName("div")
+            divOne[0].insertAdjacentHTML("afterend", "<div>two</div>")
+            var divTwo = divOne[0].nextElementSibling
+            divTwo.setAttribute("id", "two")
+            divTwo.setAttribute("onclick", "addTwoFirst()")            
+        }
+
+        function addTwoFirst() {
+            var div = document.getElementsByTagName("div")
+            div[1].insertAdjacentHTML("beforebegin", "<div>two_first</div>")
+            var divTwoFirst = div[2].previousElementSibling
+            divTwoFirst.setAttribute("id", "two_first")
+            div[2].setAttribute("id", "two_second")
+        }
+    // Добавьте после дива с id=one еще один див с текстом two и id=two
+    // На клик по id=two добавьте перед ним див с id - two_first, а див с id=two измените на two_second 
+    </script>
+</body>
+</html>
