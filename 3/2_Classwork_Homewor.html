@@ -1,0 +1,86 @@
+<!-- 
+    Запросите у пользователя ввести какую-то фразу. 
+    Отобразите каждое отдельное слово в виде списка ul li. 
+    Также отобразите первое слово UPPERCASE, а последние 2 с маленькой. 
+    Найдите все буквы "а" их количество в модальное окно. 
+ -->
+ 
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<body>
+    
+    <form >
+        <input class="text" type="text" placeholder="Введите текст..." >
+        <input type="button" value="Клик" onclick="btnClick()">
+        <input class="clearBtn" type="button" value="Очистить" >
+    </form>
+    
+        
+</body>
+
+    <script>
+        var findA = new RegExp("a|а", "gi");
+        var formSelector = document.querySelector("form");
+        var addUl;
+
+        document.querySelector(".clearBtn").onclick = clear;
+        
+        function clear() {
+            document.querySelector(".text").value = "";
+            formSelector.nextSibling.remove();
+            addUl.remove();
+        }
+
+        function btnClick() {
+            var textElement = document.querySelector(".text").value;
+            var textSplit = textElement.split(" ");
+            var countA = textElement.match(findA);
+            
+            addList(textSplit);
+
+            if (countA) {
+                formSelector.after(`Количество букв \"a\" в фразе - ${countA.length}`);                
+            } else {
+                formSelector.after("Буква \"a\" в фразе отсутствует! ");
+            }
+            
+        }
+
+        function addList(text) {
+            addUl = document.createElement("ul");
+            formSelector.after(addUl);
+
+            for (var index = 0; index < text.length; index++) {
+                if (!text[index]) {
+                    return;
+                } else {
+                    addUl.insertAdjacentHTML("beforeend", `<li>${text[index]}</li>`);
+                }
+            }
+            upperAndLower(addUl);
+        }
+
+        function upperAndLower(list) {
+            if(list.children.length <= 2) {
+                list.firstElementChild.setAttribute('style', 'text-transform: uppercase;');
+            } else if (list.children.length > 2) {
+                list.firstElementChild.setAttribute('style', 'text-transform: uppercase;');
+                list.lastElementChild.setAttribute('style', 'text-transform: lowercase;');
+                list.lastElementChild.previousElementSibling.setAttribute('style', 'text-transform: lowercase;');
+            }
+        }
+    </script>
+</html>
+
+
+
+
+
+
+
+ 
+ 
