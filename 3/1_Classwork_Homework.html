@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<body>
+    <!-- Создайте счетчик секунд, который начинает отчет с 1 и заканчивается на 30,
+также добавьте кнопки которые останавливают отчет, и запускают его заново и добавьте кнопку
+обнуляющую отcчет. Также попробуйте изменить код так чтобы отсчет начинался с 30 и заканчивался на 1. -->
+    <p id="time">0</p>
+
+    <div class="wrap">     
+        <input type="button" value="Start" onclick="start()">
+        <input type="button" value="Stop" onclick="stop()">
+        <input type="button" value="Reset" onclick="reset()">
+    </div>
+
+    <style>
+        body {
+            margin: 0 auto;
+            background-color:#C6D8FF ;
+        }
+
+        .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;        
+        }
+
+        .wrap > input {
+            border: 1px solid black;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .wrap > input:hover {
+            background-color: black;
+            color: white;
+        }
+
+        #time {
+            display: flex;
+            font-size: 55px;
+            justify-content: center;
+        }
+    </style>
+    
+
+    <script>
+        const timeEl = document.querySelector("#time");
+        var time = 0;
+        var interval;
+
+        function start() { 
+            interval = setInterval(upTime, 1000);           
+            setTime(time);
+        }
+      
+        function stop() {
+            clearInterval(interval);
+        }
+
+        function reset() {
+            time = 0;
+            clearInterval(interval);
+            setTime(time);
+        }
+        
+        function upTime() {
+            if (time === 30) {
+                clearInterval(interval);
+                timeEl.innerHTML = "30 seconds have passed!!!"
+            } else {
+                let current = ++time;
+                setTime(current);
+            }
+        }
+
+        function setTime(value) {
+            timeEl.innerHTML = `${value}`;
+        }
+    </script>
+</body>
+</html>
