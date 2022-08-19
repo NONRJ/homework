@@ -1,0 +1,39 @@
+<!-- Напишите регулярные выражения, которые будут выбирать 
+    индекс - 55535 - 5 numbers
+    ip адресс, пример 255.255.255.255
+    цены в долларах - $0.84, $1232.84, $4
+    дата в виде - 30/12/2016 - день, месяц, год
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>Document</title>
+ </head>
+ <body>
+    <p>Lorem ipsum dolor sit amet 25.255.255.255  5555533 consectetur adipisicing elit. 30/12/2016 Fuga deserunt 48961 rerum atque 30/12/1916  vero soluta error illo, mollitia hic necessitatibus harum 33125 ipsam veniam! Placeat cumque tempore  $0.84, $132.004, $4 voluptatibus velit quo quasi dolores. 1.11.1.1</p>
+ 	<script type="text/javascript">
+        var text = document.querySelector('p').innerHTML;
+
+        var patternIp = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/g
+        var resIp = text.match(patternIp)
+        document.write("<h4>IP</h4> Resuslt -> " + resIp.join(", ") + "<br>");
+        console.log("Result:", resIp)
+
+        var patternIndex = /\b\d{5}\b/g
+        var resIndex = text.match(patternIndex)
+        document.write("<h4>Index</h4> Resuslt -> " + resIndex.join(", ") + "<br>");
+        console.log("Result:", resIndex)
+
+        var patternDate = /\d{1,2}\/\d{1,2}\/\d{4}/g;
+        var resDate = text.match(patternDate)
+        document.write("<h4>Date</h4> Resuslt -> " + resDate.join(", ") + "<br>");
+        console.log("Result:", resDate)
+
+        var patternPrice = /\$\d{0,9}[.]{0,1}\d{0,9}/g;
+        var resPrice = text.match(patternPrice)
+        document.write("<h4>Price</h4>res -> " + resPrice.join(", ") + "<br>");
+        console.log("Result:", resPrice)
+ 	</script>
+ </body>
+ </html>
