@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ключевое слово this</title>
+    <style>
+        div {
+            background-color:green;
+            display: inline-block;
+            height: 100px;
+            width: 120px;
+            margin: 10px;
+        }
+        main {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </main>
+
+    <a href="https://itea.ua/" onclick="setHandler()">Exit</a>
+    <script>
+        var divArr = document.getElementsByTagName("div");
+        for (var i = 0; i < divArr.length; i++) {
+            divArr[i].onmouseover = function () {
+                this.style.backgroundColor = `rgb(${random()}, ${random()}, ${random()})`;
+                this.innerHTML = this.style.backgroundColor
+            }
+        }
+
+        function random() {
+            var min = 0;
+            var max = 255;
+            var result = Math.floor(Math.random() * (max - min) + min);
+            return result;
+        }
+        
+        function setHandler() {
+            window.onbeforeunload = function() { 
+                return "";
+            };
+        };
+    </script>
+
+</body>
+</html>
