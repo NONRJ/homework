@@ -1,0 +1,70 @@
+<!-- 1. Создайте 5 блоков с текстом. Добавьте в каждый из блоков кнопку для его удаления.
+    Используйте только один обработчик. -->
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <style>
+        #blocks {
+            width: 200px;
+            margin: 0 auto;
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .block {
+            padding: 5px;
+            margin-bottom: 2px;
+            border: 1px solid;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="blocks">
+        <div class="block">
+            <div class="text">
+                Block-1
+            </div>
+            <input type="button" value="Удалить">
+        </div>
+        <div class="block">
+            <div class="text">
+                Block-2
+            </div>
+            <input type="button" value="Удалить">
+        </div>
+        <div class="block">
+            <div class="text">
+                Block-3
+            </div>
+            <input type="button" value="Удалить">
+        </div>
+        <div class="block">
+            <div class="text">
+                Block-4
+            </div>
+            <input type="button" value="Удалить">
+        </div>
+        <div class="block">
+            <div class="text">
+                Block-5
+            </div>
+            <input type="button" value="Удалить">
+        </div>
+    </div>
+
+    <script>
+        var blocks = document.getElementById("blocks");
+        blocks.addEventListener('click', deleteBlock);
+
+        function deleteBlock(e) {
+            if (e.target.closest('input')) {
+                e.target.parentElement.remove();
+            }
+        }
+    </script>
+</body>
+</html>
+

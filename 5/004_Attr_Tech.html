@@ -1,0 +1,111 @@
+<!-- 2. Доработайте пример 004_Attr_Tech.html таким образом, чтобы при наведении на span элементы,
+    подсказка сплыва под ними, а не в модальном окне. Используйте addEventListener   -->
+  
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	
+	<style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+		span {
+            padding: 5px;
+		}
+
+        #main-div {
+            text-align: center;
+        }
+	</style>
+</head>
+<body>
+
+	<div id="main-div">
+		<span data-tooltip="наведите">наведите</span>
+		<span data-tooltip="для">для</span>
+		<span data-tooltip="подсказки">подсказки</span>
+    </div>
+
+    <script>
+		
+        var spans = document.querySelectorAll('span')
+        var spanEl = document.createElement('span');
+
+        spans.forEach(elem => {
+            elem.addEventListener('mouseenter', show);
+            elem.addEventListener('mouseleave', hide);
+        });
+
+        function hide() {
+            spanEl.remove();
+        }
+
+        function show(e) {
+            spanEl.style.cssText = `
+                position: absolute;
+                left: ${e.target.getBoundingClientRect().left}px;
+                top: ${e.target.getBoundingClientRect().bottom}px;
+            `;
+
+            spanEl.textContent = e.target.getAttribute('data-tooltip');;
+            spanEl.classList.add("spanEl")
+            document.body.insertAdjacentElement('afterend', spanEl);
+        }
+		
+	
+    </script>
+</body>
+
+
+<!-- 
+<head>
+    <meta charset="utf-8">
+    <title>Homework</title>
+    <style>
+
+        [data-tooltip] {
+            position: relative; 
+        }
+        [data-tooltip]::after {
+            content: attr(data-tooltip); 
+            position: absolute; 
+            
+            left: 0; top: 0; 
+            
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+            opacity: 0; 
+            transition: .5s;
+        }
+
+        [data-tooltip]:hover:after {
+            top: 15px;
+            opacity: 1;
+        } 
+    </style>
+  
+</head>
+<body>
+    <div id="main-div">
+        <span data-tooltip="наведите">наведите</span>
+        <span data-tooltip="для">для</span>
+        <span data-tooltip="подсказки">подсказки</span>
+    </div>
+    <script>
+        window.onload = function () {
+            var mainDiv = document.getElementById("main-div");
+            mainDiv.onmouseover = function(e) {
+                var target = e && e.target || window.event.srcElement;
+                var dataToggleId = target.getAttribute('data-tooltip');
+                if (!dataToggleId) {
+                      return
+                };
+                alert(dataToggleId);
+            };
+        };
+    </script>
+</body> -->
+</html> 

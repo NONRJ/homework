@@ -1,0 +1,42 @@
+<!--
+Создайте ссылку и див с текстом внутри, который изначально при загрузке страницы будет скрыт.
+При клике на ссылку див появляется, если повторно нажать ссылку див и текст должны пропасть.
+Также создайте кнопку, которая будет отменять выполнение обработчика клика по ссылке.
+ -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,user-scalable=no">
+    </head>
+    <body>
+        <a class="link" href="#">Показать/Спрятать</a>
+        <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium provident nihil odit facilis perspiciatis itaque dolorem numquam id aliquam a possimus excepturi tempora sit reprehenderit architecto voluptatum, fugiat dolorum dolor!</div>
+        input id="btn" type="button" value="Отменить выполнение обработчика">
+
+        <script>
+            window.onload = function () {
+                var link = document.querySelector('.link');
+                var text = document.querySelector('.text');
+                var btn = document.getElementById('btn');
+    
+                text.setAttribute("style", "visibility: hidden;")
+                link.addEventListener('click', showOrHide);
+                btn.addEventListener('click', remove);
+        
+                function showOrHide(e) {
+                    console.log(text.getAttribute("style"))
+                    if (text.getAttribute("style") === "visibility: hidden;")
+                    {
+                        text.setAttribute("style", "visibility: visible;")
+                    } else {
+                        text.setAttribute("style", "visibility: hidden;")
+                    }
+                    e.preventDefault();
+                }
+                function remove() {
+                    link.removeEventListener('click', showOrHide);
+                }
+            };
+        </script>
+    </body>
+</html>
