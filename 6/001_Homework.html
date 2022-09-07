@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+	<title>HomeWork</title>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+		}
+		.blok {
+			position: relative;
+			width: 100px;
+			height: 100px;
+			margin: 5px;
+			background: radial-gradient(ellipse farthest-corner at right bottom, #fedb37 0%, #FDB931 8%, #9f7928 30%, #8a6e2f 40%, transparent 80%),
+        				radial-gradient(ellipse farthest-corner at left top, #ffffff 0%, #ffffac 8%, #d1b464 25%, #5d4a1f 62.5%, #5d4a1f 100%);			
+		}
+	</style>
+</head>
+<body>
+    <!-- 
+	2. создайте div, при клике на него, div начинает двигаться вправо, при клике на кнопку - останавливается,
+	при попадании div к краю окна, он переходит к началу окна.
+	-->
+	<div class="blok"></div>
+	<input type="button" value="Стоп">
+
+	<script>
+		var blok = document.querySelector('.blok');
+		var stopBlok = document.querySelector("input");
+		
+		blok.addEventListener('click', move);
+		stopBlok.addEventListener('click', stop);
+
+		var blokInterval;
+		var counter = 0;
+
+		function move() {
+			clearInterval(blokInterval);
+			blokInterval = setInterval(function() {
+				console.log(blok.offsetLeft);
+				if (blok.offsetParent.offsetWidth > blok.offsetLeft + 100) {
+					
+					counter += 3;
+					blok.style.cssText = `left:${counter}px`;
+				} else {
+					counter = 0;
+					blok.style.cssText = `left:${counter}px`;
+					move();
+				}
+			}, 5);
+		}
+		function stop() {
+			clearInterval(blokInterval);
+		}
+	</script>
+</body>
+</html>
