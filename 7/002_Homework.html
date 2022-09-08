@@ -1,0 +1,54 @@
+<!-- Реализуйте последние 2 слайда в презентации с помощью пройденого на уроке материала -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    
+</head>
+<body>
+
+    <script>
+        class Man {
+            constructor (walk, eat, drink) {
+                this.walk = walk;
+                this.eat = eat;
+                this.drink = drink;
+            }
+        }
+
+        class Doctor extends Man {
+            constructor(walk, eat, drink) {
+                super(walk, eat, drink);
+                this.walk = walk;
+                this.eat = eat;
+                this.drink = drink;
+            }
+            cure() {
+                return `Walt - ${this.walk}, eat - ${this.eat}, drink - ${this.drink}`;
+            }
+        }
+
+        class Solder extends Man {
+            constructor(walk, eat, drink) {
+                super(walk, eat, drink);
+                this.walk = walk;
+                this.eat = eat;
+                this.drink = drink;
+            }
+            shoot() {
+                console.log("All good");
+            }
+        }
+
+        let doc = new Doctor("true", "false", "true");
+        let sold = new Solder();
+        
+
+        console.log(doc.cure());
+        sold.shoot()
+        
+        
+    </script>
+</body>
+</html>
