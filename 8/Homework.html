@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>localStorage</title>
+    <style>
+
+        body {
+            background-color: rgb(193, 252, 252);
+        }
+        #mainForm.hidden {
+            display: none;
+        }
+        #modal {
+            width: 100%;
+            position: absolute;
+            top: 30px;
+            left: 0;
+            transform: translateY(-1000px);
+            transition: transform linear .5s;
+        }
+
+        #modal.visible {
+            transform: translateY(0px);
+        }
+
+        #modalForm, #mainForm {
+            background-color: #ccc;
+            display: flex;
+            flex-direction: column;
+            width: 250px;
+            height: 150px;
+            justify-content: center;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            box-shadow: 0px 0px 15px;
+            padding: 5px;
+        }
+
+        #modalParag, #mainParag {
+            margin: 0 auto;
+            margin-bottom: 5px; 
+            text-align: center;
+        }
+        #inputText {
+            margin-bottom: 5px;
+        }
+
+        #exitBtn, #inputBtn {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Создайте страницу которая запрашивает имя пользователя, если пользователь вводит "Admin" либо "admin" он попадает на страницу,
+    которая оповещает его о том что " Пользоваетль Admin(не статическая строка, а данные что ввел пользователь) вошел в систему"
+    а рядом разместите кнопку "Выход" которая вернет пользователя к модальному окну ввода логина. Реализуйте код как для куки так и для localstorage. -->
+
+   
+    <form id="mainForm" >
+        <p id="mainParag">Введите имя пользовтеля</p>
+        <input id="inputText" type="text">
+        <input type="reset" id="inputBtn" type="button" value="Вход">
+    </form>
+
+    <div id="modal">
+        <form id="modalForm" >
+            <p id="modalParag"></p>
+            <input id="exitBtn" type="button" value="Выход">
+        </form>
+    </div>
+
+    <script>
+
+        window.addEventListener('load', init);
+        function init() {
+            localStorage.setItem('user', 'admin');
+        };
+        
+        var inputText = document.getElementById("inputText");
+        var inputBtn = document.getElementById("inputBtn");
+        var modal = document.getElementById("modal");
+        var mainForm = document.getElementById("mainForm");
+        var resultParag = document.getElementById("modalParag")
+        var exit = document.getElementById("exitBtn");
+
+        inputBtn.addEventListener("click", resultView);
+        exit.addEventListener("click", homePage )
+
+
+        function resultView() {
+
+            var userName = inputText.value.toLowerCase();
+            if (userName === localStorage.user) {
+                resultParag.innerHTML = ` Пользоваетль ${inputText.value} вошел в систему`;
+                modal.classList = "visible";
+                mainForm.classList = "hidden";
+            } else {
+                alert("Error")
+            }
+            
+        }
+        function homePage() {
+            modal.classList = "hidden";
+            mainForm.classList = "mainForm";
+        }
+        
+    </script>
+
+    
+</body>
+</html>
